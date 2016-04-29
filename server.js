@@ -24,10 +24,9 @@ app.get('/', function (req, res) {
     //__dirname : It will resolve to your project folder.
 });
 
-app.get('/result', function (req, res, next) {
+app.get('/results', function (req, res, next) {
 
     res.sendFile(path.join(__dirname + '/results.html'));
-    next();
 });
 
 
