@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <style type="text/css">
         body {
             background-image: url('http://wallpapercave.com/wp/UpGSOe0.jpg');
         }
+
         #topTop {
             background-color: rgba(200, 200, 200, .7);
             padding: 20px;
+
+        }
+        #botBot {
+            background-color: rgba(200, 200, 200, .9);
+            padding: 20px;
+            border-top: groove;
 
         }
 
@@ -46,7 +54,7 @@
 
                 recognition.onresult = function (e) {
                     document.getElementById('transcript').value
-                        = e.results[0][0].transcript;
+                            = e.results[0][0].transcript;
                     recognition.stop();
                     document.getElementById('labnol').submit();
                 };
@@ -76,5 +84,7 @@
     <h3>For help with this site. Please contact: Breanna Barney</h3>
     <img src="https://my.ldschurch.org/User%20Photos/Profile%20Pictures/LDS_bjbarney85_LThumb.jpg" alt='Breanna Barney'>
 </div>
+
+<div id="botBot"><p id="scripture-reference">{{ref}}</p><p id="scripture-verse">{{verse}}</p></div>
 </body>
 </html>

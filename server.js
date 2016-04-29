@@ -11,7 +11,7 @@ var appName = 'scriptures_now',
     json = bodyParser.json,
     path = require("path"),
 // Create the express app
-app = express();
+    app = express();
 
 
 http.globalAgent.maxSockets = 9999;
@@ -19,26 +19,32 @@ https.globalAgent.maxSockets = 9999;
 
 app.set('port', process.env.VCAP_APP_PORT || 4000);
 
-app.get('/',function(req,res){
-  res.sendFile(path.join(__dirname+'/view.html'));
-  //__dirname : It will resolve to your project folder.
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname + '/view.html'));
+    //__dirname : It will resolve to your project folder.
+});
+
+app.get('/result', function (req, res, next) {
+
+    res.sendFile(path.join(__dirname + '/results.html'));
+    next();
 });
 
 
 //Body Parser for dealing with POSTs
 //app.use(json());
 
-app.get("/api/v1/get-scripture", function(req, res) {
+app.get("/api/v1/get-scripture", function (req, res) {
     /*var obj = scripParser.parse(req.msg);*/
 });
 
-app.use(function(req, res, next){
+app.use(function (req, res, next) {
     console.log('Hello World');
     var returnBody;
-    var queryParams = { book:"bofm", query:"faith"};
+    var queryParams = {book: "bofm", query: "faith"};
 
     var queryString = '';
-    for(var key in queryParams) {
+    for (var key in queryParams) {
         queryString += "&" + key + "=" + queryParams[key];
     }
 
@@ -46,7 +52,7 @@ app.use(function(req, res, next){
     request(fullURL, function (error, response, body) {
         console.log(fullURL);
         returnBody = body;
-        console.log("SCRAPE THIS INFO: \n\n\n" + body.substring(1,1000)); //TODO scrape this.
+        console.log("SCRAPE THIS INFO: \n\n\n" + body.substring(1, 1000)); //TODO scrape this.
 
     });
 
