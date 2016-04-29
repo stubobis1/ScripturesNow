@@ -2,6 +2,7 @@
 
 // IMPORTS
 var appName = 'scriptures_now',
+<<<<<<< HEAD
 http = require('http'),
 https = require('https'),
 request = require('request'),
@@ -9,9 +10,8 @@ express = require('express'),
 requireDirectory = require('require-directory'),
 bodyParser = require('body-parser'),
 json = bodyParser.json,
-//scripParser = require('lds-scripture-nlp-query-parser'),
+path = require("path"),
 scripScrap = require('./scripScrap'),
-//middleware = requireDirectory(module, './server/middleware'),
 
 // Create the express app
 app = express();
@@ -21,6 +21,12 @@ http.globalAgent.maxSockets = 9999;
 https.globalAgent.maxSockets = 9999;
 
 app.set('port', process.env.VCAP_APP_PORT || 4000);
+
+app.get('/',function(req,res){
+  res.sendFile(path.join(__dirname+'/view.html'));
+  //__dirname : It will resolve to your project folder.
+});
+
 
 //Body Parser for dealing with POSTs
 //app.use(json());
