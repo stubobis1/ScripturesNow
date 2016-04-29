@@ -9,7 +9,7 @@ var appName = 'scriptures_now',
     requireDirectory = require('require-directory'),
     bodyParser = require('body-parser'),
     json = bodyParser.json,
-
+    scripParser = require('lds-scripture-nlp-query-parser'),
     middleware = requireDirectory(module, './server/middleware'),
 
 // Create the express app
@@ -24,6 +24,10 @@ app.set('port', process.env.VCAP_APP_PORT || 4000);
 //Body Parser for dealing with POSTs
 //app.use(json());
 
+app.get("/api/v1/get-scripture", function(req, res) {
+    var obj = scripParser.parse(req.msg);
+
+});
 
 app.use(function(req, res, next){
 
